@@ -1,0 +1,16 @@
+{% extends "index.html" %}
+{% block body %}
+    <h2>{{ title }}</h2>
+    <form method="post" action="/move">
+        <ul>
+            {% for link in links %}
+                <li>
+                    <input type="radio" id="{{ link }}" name="destination" value="{{ link }}"
+                           onclick="this.form.submit()">
+                    <label for="{{ link }}">{{ link }}</label>
+                </li>
+            {% endfor %}
+        </ul>
+    </form>
+    <p>Your have moved: {{ session.score }} steps</p>
+{% endblock %}
