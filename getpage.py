@@ -7,6 +7,9 @@ from urllib.request import urlopen
 from urllib.parse import urlencode
 import ssl
 
+# global variable cache
+cache = {}
+
 
 def getJSON(page):
     params = urlencode({
@@ -35,7 +38,14 @@ def getRawPage(page):
 
 
 def getPage(page):
-    title, content = getRawPage(page)
+    if page in cache:
+        title, content = page, cache[page]
+        # print(f"{page} is from cache !!!!")
+    else:
+        title, content = getRawPage(page)
+        cache[title] = content
+        # print(f"{page} is from API")
+
     soup = BeautifulSoup(content, 'html.parser')
     links = soup.select('div p a')
     links_10 = []
