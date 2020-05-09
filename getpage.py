@@ -44,6 +44,8 @@ def getPage(page):
         # print(f"{page} is from cache !!!!")
     else:
         title, content = getRawPage(page)
+        if content is None:
+            raise ValueError(f"page {page} is not exist")
         cache[title] = content
         # print(f"{page} is from API")
 
@@ -95,10 +97,12 @@ def check_main_namespace(uri):
     if ":" in uri:
         colon_index = uri.index(":")
         prefix = uri[:colon_index]
-        return prefix not in ['Média', 'Spécial', 'Discussion', 'Utilisateur', 'Discussion utilisateur', 'Wikipédia',
+        return prefix not in ['Discussion', 'Utilisateur', 'Discussion utilisateur', 'Wikipédia',
                               'Discussion Wikipédia', 'Fichier', 'Discussion fichier', 'MediaWiki',
                               'Discussion MediaWiki', 'Modèle', 'Discussion modèle', 'Aide', 'Discussion aide',
-                              'Catégorie', 'Discussion catégorie']
+                              'Catégorie', 'Discussion catégorie', 'Portail', 'Discussion Portail', 'Projet',
+                              'Discussion Projet', 'Référence', 'Discussion Référence', 'Module', 'Discussion module',
+                              'Sujet', 'Média', 'Spécial']
 
     return True
 
