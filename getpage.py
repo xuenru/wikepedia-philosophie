@@ -45,7 +45,7 @@ def getPage(page):
     else:
         title, content = getRawPage(page)
         if content is None:
-            raise ValueError(f"page {page} is not exist")
+            raise ValueError(f"page {page} non trouvé")
         cache[title] = content
         # print(f"{page} is from API")
 

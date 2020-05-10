@@ -8,21 +8,25 @@
 <body>
 {% block body %}
     {# Début du bloc "body", dont vous devez modifier le contenu #}
+    <h1>Tous les chemins mènent à la philosophie</h1>
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             <ul class=flashes>
                 {% for category, message in messages %}
-                    <li class="{{ category }}">{{ message }}, score: {{ session.score }}</li>
+                    <li class="{{ category }}">{{ message }}</li>
                 {% endfor %}
+                <li class="score">
+                    Score: <span>{{ session.score }}</span>
+                </li>
             </ul>
         {% endif %}
     {% endwith %}
 
     <form method="post" action="/new-game">
-        <input name="start">
-        <button type="submit">start</button>
+        <label for="start">Saisir la première page:</label>
+        <input name="start" id="start" placeholder="nom de page">
+        <button class="btn-start" type="submit">Départ</button>
     </form>
-
     {# Fin du bloc "body" #}
 {% endblock %}
 </body>

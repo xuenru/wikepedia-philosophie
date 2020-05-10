@@ -1,2 +1,76 @@
 /* Le CSS va ici */
+body {
+    text-align: center;
+}
 
+ul li {
+    list-style-type: none;
+}
+
+.flashes {
+    display: inline-block;
+    height: 100px;
+    font-size: 36px;
+}
+
+.flashes .success {
+    color: #28a745;
+}
+
+.flashes .warning {
+    color: #ffc107;
+}
+
+.flashes .error {
+    color: #dc3545;
+}
+
+.flashes .score {
+    font-style: italic;
+}
+
+.flashes .score span {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.btn-start {
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+}
+
+.page-list {
+    display: inline-block;
+    text-align: left;
+    padding: 0 20px;
+}
+
+.page-list label {
+    cursor: pointer;
+    margin-bottom: 5px;
+    padding: 5px;
+    display: block;
+    background-color: #17a2b8;
+    color: white;
+    text-align: center;
+    border-radius: .25rem;
+}
+
+.page-list label:hover {
+    background-color: #138496;
+}
+
+h2 span {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.abandon {
+    text-decoration: none;
+    border: solid #6c757d;
+    border-radius: .25rem;
+    color: #dc3545;
+    padding: 10px;
+}
