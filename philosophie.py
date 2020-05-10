@@ -19,6 +19,7 @@ def index():
 def new_game():
     session['article'] = request.form['start']
     session['score'] = 0
+    session['trace'] = []
     return redirect('/game')
 
 
@@ -37,6 +38,8 @@ def move():
     session['score'] += 1
     if dest == 'Philosophie':
         flash("Gagnée!", 'success')
+        session['trace'].append('Philosophie')
+        flash(' -> '.join(session['trace']), 'info')
         return redirect('/')
     return redirect('/game')
 
@@ -52,6 +55,7 @@ def game():
             raise ValueError(f"Départ de {title} n'est pas autorisé")
 
         session['current_links'] = links
+        session['trace'].append(title)
         return render_template('game.html', title=title, links=links)
     except ValueError as e:
         session['score'] = 0

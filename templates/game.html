@@ -9,7 +9,7 @@
                     <input hidden type="radio" id="{{ link }}" name="destination" value="{{ link }}"
                            onclick="this.form.submit()"
                            {% if loop.index == 1 %}checked{% endif %}>
-                    <label for="{{ link }}">{{ link }}</label>
+                    <label for="{{ link }}" {% if link == 'Philosophie' %}class="good" {% endif %}>{{ link }}</label>
                 </li>
             {% endfor %}
         </ul>

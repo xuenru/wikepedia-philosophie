@@ -25,6 +25,16 @@ ul li {
     color: #dc3545;
 }
 
+.flashes .info {
+    font-size: 16px;
+    max-width: 600px;
+}
+
+.flashes .info span {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
 .flashes .score {
     font-style: italic;
 }
@@ -32,6 +42,13 @@ ul li {
 .flashes .score span {
     font-weight: bold;
     font-size: 1.5em;
+}
+
+#start {
+    width: 300px;
+    height: 30px;
+    padding: 5px;
+    font-size: 18px;
 }
 
 .btn-start {
@@ -56,6 +73,10 @@ ul li {
     color: white;
     text-align: center;
     border-radius: .25rem;
+}
+
+.page-list label.good {
+    color: lightgreen;
 }
 
 .page-list label:hover {
