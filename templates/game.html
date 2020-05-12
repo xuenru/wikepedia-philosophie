@@ -6,10 +6,11 @@
         <ul class="page-list">
             {% for link in links %}
                 <li>
-                    <input hidden type="radio" id="{{ link }}" name="destination" value="{{ link }}"
+                    <input hidden type="radio" id="dest_{{ loop.index }}" name="destination" value="{{ link }}"
                            onclick="this.form.submit();this.disabled = true"
                            {% if loop.index == 1 %}checked{% endif %}>
-                    <label for="{{ link }}" {% if link == 'Philosophie' %}class="good" {% endif %}>{{ link }}</label>
+                    <label for="dest_{{ loop.index }}"
+                           {% if link == 'Philosophie' %}class="good" {% endif %}>{{ link }}</label>
                 </li>
             {% endfor %}
         </ul>
