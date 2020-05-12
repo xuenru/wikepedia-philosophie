@@ -40,49 +40,50 @@ def getRawPage(page):
 
 def getPage(page):
     if page in cache:
-        title, content = page, cache[page]
+        title, links_10 = page, cache[page]
         # print(f"{page} is from cache !!!!")
     else:
         title, content = getRawPage(page)
         if content is None:
             raise ValueError(f"Page {page} non trouvé")
-        cache[title] = content
+
+        soup = BeautifulSoup(content, 'html.parser')
+        links = soup.select('div p a')
+        links_10 = []
+        i = 0
+        for link in links:
+            # max 10 page
+            if i >= 10:
+                break
+            href = link.get('href')
+            # wiki page
+            if href is None or not href.startswith('/wiki/'):
+                continue
+
+            # remove prefix /wiki/
+            uri = href[6:]
+
+            # remove '#'
+            if "#" in uri:
+                shape_index = uri.index("#")
+                uri = uri[:shape_index]
+
+            # decode
+            uri = unquote(uri)
+
+            # replace '_' to space
+            uri = uri.replace('_', ' ')
+
+            # check main namespace and avoid duplicate
+            if not check_main_namespace(uri) or uri in links_10:
+                continue
+
+            # add into target list
+            links_10.append(uri)
+            i += 1
+
+        cache[page] = links_10
         # print(f"{page} is from API")
-
-    soup = BeautifulSoup(content, 'html.parser')
-    links = soup.select('div p a')
-    links_10 = []
-    i = 0
-    for link in links:
-        # max 10 page
-        if i >= 10:
-            break
-        href = link.get('href')
-        # wiki page
-        if href is None or not href.startswith('/wiki/'):
-            continue
-
-        # remove prefix /wiki/
-        uri = href[6:]
-
-        # remove '#'
-        if "#" in uri:
-            shape_index = uri.index("#")
-            uri = uri[:shape_index]
-
-        # decode
-        uri = unquote(uri)
-
-        # replace '_' to space
-        uri = uri.replace('_', ' ')
-
-        # check main namespace and avoid duplicate
-        if not check_main_namespace(uri) or uri in links_10:
-            continue
-
-        # add into target list
-        links_10.append(uri)
-        i += 1
 
     return title, links_10
 
