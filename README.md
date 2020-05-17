@@ -8,3 +8,7 @@ python philosophie.py
 ```
 python tests.py
 ```
+
+Environnement technique:
+* [Flask](https://palletsprojects.com/p/flask/)
+* Html/css
